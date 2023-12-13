@@ -28,7 +28,11 @@ oh-my-posh init pwsh --config $HOME/code/omp-themes/alpha.omp.json | Invoke-Expr
 $env:POSH_GIT_ENABLED = $true
 
 Set-PSReadLineOption -EditMode Emacs
-Set-PSReadLineKeyHandler -Chord Ctrl+Spacebar -Function AcceptSuggestion
+if ($IsMacOS) {
+    Set-PSReadLineKeyHandler -Chord Alt+Spacebar -Function AcceptSuggestion
+} else {
+    Set-PSReadLineKeyHandler -Chord Ctrl+Spacebar -Function AcceptSuggestion
+}
 
 function Get-JwtClaims {
     [CmdletBinding()]
